@@ -10,6 +10,21 @@
 - 使用训练数据统计量进行归一化。
 - Streamlit 页面支持骨架预览、步态特征图表、类别概率可视化和 JSON 结果查看。
 
+## 最简操作
+1，下载项目及权重文件  
+请下载 carepd_prediction_module_download.zip，并解压到项目根目录 carepd_prediction_module/ 下。  
+解压后添加到以下位置：  
+assets/Pretrained_checkpoints/  
+data/preprocessing/common/body_models/  
+2，创建虚拟环境  
+3，运行脚本  
+#把smpl.pkl转换为humanml3d.npy  
+python smpl_pkl_to_humanml3d_npy.py -i 某个文件.pkl -o outputs\humanml3d_npy --fps 30 --target_fps 30  
+#输出预测评分  
+python inference.py --model_path assets\Pretrained_checkpoints\momask\best_model.pt --input outputs\humanml3d_npy\某个文件.npy --output outputs\prediction.json  
+#打开前端，进行上传-提取物理参数-预测  
+streamlit run care_pd_frontend.py  
+
 ## 项目结构
 
 ```text
